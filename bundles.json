@@ -1,0 +1,12 @@
+[
+    {
+        "input": "src/index.ts",
+        "output": "dist/chartisan_x.js"
+    },
+    {
+        "input": "src/index.ts",
+        "output": "dist/chartisan_x_solo.js",
+        "external": [],
+        "globals": {}
+    }
+]

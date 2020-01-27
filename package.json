@@ -1,0 +1,41 @@
+{
+    "name": "@chartisan/x",
+    "description": "Chartisan's x frontend.",
+    "version": "0.1.0",
+    "author": "Èrik Campobadal Forés <soc@erik.cat>",
+    "license": "MIT",
+    "main": "dist/chartisan_x.js",
+    "source": "src/index.ts",
+    "types": "dist/index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/chartisan/chartjs.git"
+    },
+    "scripts": {
+        "dev": "ultrabundle",
+        "watch": "ultrabundle --watch",
+        "prod": "ultrabundle --optimize",
+        "docs": "typedoc src",
+        "release": "npm run prod && npm run docs"
+    },
+    "files": [
+        "dist"
+    ],
+    "keywords": [
+        "Chart",
+        "Charts",
+        "Chartisan",
+        "Plot",
+        "Plots",
+        "Graphic",
+        "Graphics"
+    ],
+    "devDependencies": {
+        "typescript": "^3.7.3",
+        "ultrabundle": "^0.1.0",
+        "typedoc": "^0.16.5"
+    },
+    "dependencies": {
+        "@chartisan/chartisan": "file:../chartisan"
+    }
+}
