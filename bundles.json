@@ -1,12 +1,11 @@
 [
     {
         "input": "src/index.ts",
-        "output": "dist/chartisan_x.js"
-    },
-    {
-        "input": "src/index.ts",
-        "output": "dist/chartisan_x_solo.js",
-        "external": [],
-        "globals": {}
+        "output": "dist/chartisan_echarts.js",
+        "external": ["echarts"],
+        "globals": {
+            "echarts": "echarts"
+        },
+        "optimizations": { "simplify": false }
     }
 ]

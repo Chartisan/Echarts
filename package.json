@@ -1,15 +1,15 @@
 {
-    "name": "@chartisan/x",
-    "description": "Chartisan's x frontend.",
+    "name": "@chartisan/echarts",
+    "description": "Chartisan's echarts frontend.",
     "version": "0.1.0",
     "author": "Èrik Campobadal Forés <soc@erik.cat>",
     "license": "MIT",
-    "main": "dist/chartisan_x.js",
+    "main": "dist/chartisan_echarts.js",
     "source": "src/index.ts",
     "types": "dist/index.d.ts",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/chartisan/chartjs.git"
+        "url": "git+https://github.com/chartisan/echarts.git"
     },
     "scripts": {
         "dev": "ultrabundle",
@@ -31,11 +31,16 @@
         "Graphics"
     ],
     "devDependencies": {
+        "@types/echarts": "^4.4.2",
+        "typedoc": "^0.16.5",
         "typescript": "^3.7.3",
-        "ultrabundle": "^0.1.0",
-        "typedoc": "^0.16.5"
+        "ultrabundle": "^0.1.0"
     },
     "dependencies": {
-        "@chartisan/chartisan": "file:../chartisan"
+        "@chartisan/chartisan": "file:../chartisan",
+        "resize-observer": "^1.0.0"
+    },
+    "peerDependencies": {
+        "echarts": "^4.6.0"
     }
 }

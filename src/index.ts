@@ -1,4 +1,6 @@
 import { Hooks } from './hooks'
+import { install, ResizeObserver } from 'resize-observer'
+import { init, ECharts, EChartOption } from 'echarts'
 import {
     isHook,
     ServerData,
@@ -8,12 +10,15 @@ import {
 
 export { Hooks as ChartisanHooks }
 
+// Install the ResizeObserver pollyfill.
+if (!window.hasOwnProperty('ResizeObserver')) install()
+
 /**
  * Used as an alias.
  *
  * @type {CC}
  */
-export type CC = {}
+export type CC = EChartOption
 
 /**
  * Base chart class for ChartJS.
@@ -24,6 +29,61 @@ export type CC = {}
  */
 export class Chartisan extends Base<CC> {
     /**
+     * The chart canvas.
+     *
+     * @type {HTMLDivElement}
+     * @memberof Chartisan
+     */
+    div?: HTMLDivElement
+
+    /**
+     * Stores the chart instance.
+     *
+     * @type {ECharts}
+     * @memberof Chartisan
+     */
+    chart?: ECharts
+
+    /**
+     * Stores the resize observer.
+     *
+     * @type {ResizeObserver}
+     * @memberof Chartisan
+     */
+    observer?: ResizeObserver
+
+    /**
+     * Observes the chart division for changes to resize
+     * the chart to the new division dimensions.
+     *
+     * @protected
+     * @memberof Chartisan
+     */
+    protected observe() {
+        // Remove existing observations.
+        if (this.observer) this.observer.disconnect()
+        // Create a new observer with the given callback.
+        this.observer = new ResizeObserver(() => this.chart?.resize())
+        // Observe the division in case it exists.
+        if (this.div) this.observer.observe(this.div)
+    }
+
+    /**
+     * Renews the division where the chart lives.
+     *
+     * @protected
+     * @memberof Chartisan
+     */
+    protected renewDiv() {
+        if (this.div) this.body.removeChild(this.div)
+        this.div = document.createElement('div')
+        this.div.style.width = '100%'
+        this.div.style.height = '100%'
+        this.body.appendChild(this.div)
+        this.observe()
+    }
+
+    /**
      * Formats the data of the request to match the data that
      * the chart needs (acording to the desired front-end).
      *
@@ -33,7 +93,15 @@ export class Chartisan extends Base<CC> {
      * @memberof Chartisan
      */
     protected formatData(response: ServerData): CC {
-        return {}
+        return {
+            xAxis: { data: response.chart.labels },
+            yAxis: {},
+            series: response.datasets.map(({ name, values }) => ({
+                name,
+                type: 'bar',
+                data: values
+            }))
+        }
     }
 
     /**
@@ -43,7 +111,12 @@ export class Chartisan extends Base<CC> {
      * @param {CC} data
      * @memberof Chartisan
      */
-    protected onUpdate(data: CC) {}
+    protected onUpdate(data: CC) {
+        if (this.chart) this.chart.dispose()
+        this.renewDiv()
+        this.chart = init(this.div!)
+        this.chart.setOption(data)
+    }
 
     /**
      * Handles a successfull response of the chart data
@@ -55,7 +128,9 @@ export class Chartisan extends Base<CC> {
      * @param {ChartUpdateProps} [options]
      * @memberof Chartisan
      */
-    protected onBackgroundUpdate(data: CC, options?: {}) {}
+    protected onBackgroundUpdate(data: CC, options?: {}) {
+        if (this.chart) this.chart.setOption(data)
+    }
 }
 
 declare global {

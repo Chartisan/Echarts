@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Chartisan example</title>
+        <link
+            href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <style>
+            html,
+            body {
+                height: 100%;
+                width: 100%;
+                font-family: 'Varela Round', sans-serif;
+            }
+            .chart {
+                height: 18rem;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-200">
+        <div class="container mx-auto my-6">
+            <div class="bg-white rounded shadow-md p-6">
+                <button onclick="update1()">Update</button>
+                <div id="chart1" class="chart"></div>
+            </div>
+            <div class="mt-4 bg-white rounded shadow-md p-6">
+                <button onclick="update2()">Update</button>
+                <div id="chart2" class="chart"></div>
+            </div>
+            <div
+                class="text-center mt-6 uppercase font-bold text-xs text-gray-400 tracking-widest"
+            >
+                Copyright &copy; 2020 &mdash; Èrik Campobadal Forés
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/echarts@4.6.0/dist/echarts.min.js"></script>
+        <script src="./dist/chartisan_echarts.js"></script>
+        <script>
+            function randomNumber() {
+                return Math.floor(Math.random() * 50 + 1)
+            }
+            function randomData() {
+                return {
+                    chart: {
+                        labels: ['a', 'b', 'c'],
+                        extra: null
+                    },
+                    datasets: [
+                        {
+                            id: 1,
+                            name: 'Sample 1',
+                            values: [
+                                randomNumber(),
+                                randomNumber(),
+                                randomNumber()
+                            ],
+                            isDatetime: false,
+                            extra: null
+                        },
+                        {
+                            id: 2,
+                            name: 'Sample 2',
+                            values: [
+                                randomNumber(),
+                                randomNumber(),
+                                randomNumber()
+                            ],
+                            isDatetime: false,
+                            extra: null
+                        }
+                    ]
+                }
+            }
+            const chart1 = new Chartisan({
+                el: '#chart1',
+                url: 'http://127.0.0.1:9000',
+                hooks: new ChartisanHooks()
+                    .title({
+                        textAlign: 'center',
+                        left: '50%',
+                        text: 'Example chart title to show',
+                        subtext: 'This is an example subtext'
+                    })
+                    .legend({ bottom: 0 })
+                    .tooltip()
+                    .colors()
+                    .axis(false)
+                    .datasets([
+                        {
+                            top: '25%',
+                            bottom: '25%',
+                            type: 'pie',
+                            center: ['25%', '50%'],
+                            radius: ['50%', '100%'],
+                            avoidLabelOverlap: false
+                        },
+                        {
+                            top: '25%',
+                            bottom: '25%',
+                            type: 'pie',
+                            center: ['75%', '50%'],
+                            radius: ['50%', '100%'],
+                            avoidLabelOverlap: false
+                        }
+                    ])
+            })
+            const chart2 = new Chartisan({
+                el: '#chart2',
+                data: randomData(),
+                hooks: new ChartisanHooks()
+                    .title({
+                        textAlign: 'center',
+                        left: '50%',
+                        text: 'Example chart title to show',
+                        subtext: 'This is an example subtext'
+                    })
+                    .legend({ bottom: 0 })
+                    .tooltip()
+                    .colors()
+                    .datasets([
+                        {
+                            type: 'line',
+                            smooth: true,
+                            lineStyle: { width: 3 },
+                            symbolSize: 8,
+                            animationEasing: 'cubicInOut'
+                        },
+                        'bar'
+                    ])
+                    .options({
+                        yAxis: {
+                            axisLine: { show: false },
+                            axisTick: { show: false },
+                            splitLine: { lineStyle: { type: 'dashed' } }
+                        },
+                        xAxis: {
+                            axisLine: { show: false },
+                            axisTick: { show: false },
+                            axisPointer: { type: 'none' }
+                        }
+                    })
+            })
+            function update1() {
+                chart1.update({ background: true })
+            }
+            function update2() {
+                chart2.update({ data: randomData(), background: true })
+            }
+        </script>
+    </body>
+</html>
