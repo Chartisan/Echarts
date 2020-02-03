@@ -128,8 +128,9 @@ export class Chartisan extends Base<CC> {
      * @param {ChartUpdateProps} [options]
      * @memberof Chartisan
      */
-    protected onBackgroundUpdate(data: CC, options?: {}) {
+    protected onBackgroundUpdate(data: CC) {
         if (this.chart) this.chart.setOption(data)
+        else this.onUpdate(data)
     }
 }
 

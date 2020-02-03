@@ -1,10 +1,11 @@
 {
     "name": "@chartisan/echarts",
     "description": "Chartisan's echarts frontend.",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "author": "Èrik Campobadal Forés <soc@erik.cat>",
     "license": "MIT",
     "main": "dist/chartisan_echarts.js",
+    "module": "dist/chartisan_echarts.es.js",
     "source": "src/index.ts",
     "types": "dist/index.d.ts",
     "repository": {
@@ -16,12 +17,14 @@
         "watch": "ultrabundle --watch",
         "prod": "ultrabundle --optimize",
         "docs": "typedoc src",
-        "release": "npm run prod && npm run docs"
+        "release": "npm run prod && npm run docs",
+        "publish": "npm run release && npm publish --access public"
     },
     "files": [
         "dist"
     ],
     "keywords": [
+        "Echarts",
         "Chart",
         "Charts",
         "Chartisan",
@@ -34,10 +37,10 @@
         "@types/echarts": "^4.4.2",
         "typedoc": "^0.16.5",
         "typescript": "^3.7.3",
-        "ultrabundle": "^0.1.0"
+        "ultrabundle": "^1.0.2"
     },
     "dependencies": {
-        "@chartisan/chartisan": "file:../chartisan",
+        "@chartisan/chartisan": "^1.0.7",
         "resize-observer": "^1.0.0"
     },
     "peerDependencies": {

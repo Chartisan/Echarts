@@ -3,9 +3,15 @@
         "input": "src/index.ts",
         "output": "dist/chartisan_echarts.js",
         "external": ["echarts"],
-        "globals": {
-            "echarts": "echarts"
-        },
+        "globals": { "echarts": "echarts" },
+        "optimizations": { "simplify": false }
+    },
+    {
+        "input": "src/index.ts",
+        "output": "dist/chartisan_echarts.es.js",
+        "format": "es",
+        "external": ["echarts"],
+        "globals": { "echarts": "echarts" },
         "optimizations": { "simplify": false }
     }
 ]
