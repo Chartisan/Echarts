@@ -4,7 +4,7 @@
         "output": "dist/chartisan_echarts.js",
         "external": ["echarts"],
         "globals": { "echarts": "echarts" },
-        "optimizations": { "simplify": false }
+        "optimizations": { "simplify": false, "gzip": false }
     },
     {
         "input": "src/index.ts",
@@ -12,6 +12,6 @@
         "format": "es",
         "external": ["echarts"],
         "globals": { "echarts": "echarts" },
-        "optimizations": { "simplify": false }
+        "optimizations": { "simplify": false, "gzip": false }
     }
 ]
