@@ -160,5 +160,7 @@ declare global {
     }
 }
 
-window.Chartisan = Chartisan
-window.ChartisanHooks = Hooks
+if (typeof window !== 'undefined') {
+    window.Chartisan = Chartisan
+    window.ChartisanHooks = Hooks
+}
