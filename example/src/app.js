@@ -6,24 +6,15 @@ function randomNumber() {
 
 function randomData() {
     return {
-        chart: {
-            labels: ['a', 'b', 'c'],
-            extra: null
-        },
+        chart: { labels: ['a', 'b', 'c'] },
         datasets: [
             {
-                id: 1,
                 name: 'Sample 1',
-                values: [randomNumber(), randomNumber(), randomNumber()],
-                isDatetime: false,
-                extra: null
+                values: [randomNumber(), randomNumber(), randomNumber()]
             },
             {
-                id: 2,
                 name: 'Sample 2',
-                values: [randomNumber(), randomNumber(), randomNumber()],
-                isDatetime: false,
-                extra: null
+                values: [randomNumber(), randomNumber(), randomNumber()]
             }
         ]
     }
