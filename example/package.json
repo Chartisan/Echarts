@@ -16,7 +16,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@chartisan/echarts": "^2.0.0",
+        "@chartisan/echarts": "^2.0.1",
         "echarts": "^4.6.0"
     },
     "devDependencies": {

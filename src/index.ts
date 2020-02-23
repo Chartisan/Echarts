@@ -138,7 +138,7 @@ export class Chartisan extends Base<CC> {
      *
      * @memberof Chartisan
      */
-    protected destroy() {
+    destroy() {
         if (this.chart) this.chart.dispose()
     }
 }
