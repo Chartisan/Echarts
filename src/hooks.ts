@@ -84,7 +84,7 @@ export class Hooks extends BaseHooks<CC> {
      * @memberof Hooks
      */
     colors(colors: string[] = colorPalette): this {
-        return this.custom(chart => (chart.color = colors) && chart)
+        return this.custom(({ data }) => (data.color = colors) && data)
     }
 
     /**
@@ -95,32 +95,32 @@ export class Hooks extends BaseHooks<CC> {
      * @memberof Hooks
      */
     datasets(types: string | (string | EChartOption.Series)[]): this {
-        return this.custom(function(chart, merge) {
+        return this.custom(({ data, merge }) => {
             const t = Array.isArray(types)
                 ? types.map(e => (typeof e === 'string' ? { type: e } : e))
                 : [{ type: types }]
             // Modify each dataset.
-            if (chart.series) {
-                for (let i = 0; i < chart.series.length; i++) {
+            if (data.series) {
+                for (let i = 0; i < data.series.length; i++) {
                     // Check if it's a special dataset.
-                    chart.series[i] = merge(
+                    data.series[i] = merge(
                         // @ts-ignore
-                        chart.series[i],
+                        data.series[i],
                         t[i % t.length]
                     )
                     if (t[i % t.length].type == 'pie') {
                         // Pie datasets require the data to be formated in a different way.
                         // @ts-ignore
-                        chart.series[i].data = chart.series[i]?.data?.map(
+                        data.series[i].data = data.series[i]?.data?.map(
                             (value: unknown, i: number) => ({
                                 value,
-                                name: getLabel(chart.xAxis, i)
+                                name: getLabel(data.xAxis, i)
                             })
                         )
                     }
                 }
             }
-            return chart
+            return data
         })
     }
 }

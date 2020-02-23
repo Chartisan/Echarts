@@ -132,6 +132,15 @@ export class Chartisan extends Base<CC> {
         if (this.chart) this.chart.setOption(data)
         else this.onUpdate(data)
     }
+
+    /**
+     * Destroys the chart instance if any.
+     *
+     * @memberof Chartisan
+     */
+    protected destroy() {
+        if (this.chart) this.chart.dispose()
+    }
 }
 
 declare global {
