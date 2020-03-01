@@ -10,9 +10,6 @@ import {
 
 export { Hooks as ChartisanHooks }
 
-// Install the ResizeObserver pollyfill.
-if (!window.hasOwnProperty('ResizeObserver')) install()
-
 /**
  * Used as an alias.
  *
@@ -170,6 +167,8 @@ declare global {
 }
 
 if (typeof window !== 'undefined') {
+    // Install the ResizeObserver pollyfill.
+    if (!window.hasOwnProperty('ResizeObserver')) install()
     window.Chartisan = Chartisan
     window.ChartisanHooks = Hooks
 }
