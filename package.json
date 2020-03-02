@@ -1,7 +1,7 @@
 {
     "name": "@chartisan/echarts",
     "description": "Chartisan's echarts frontend.",
-    "version": "2.0.3",
+    "version": "2.1.0",
     "author": "Èrik Campobadal Forés <soc@erik.cat>",
     "license": "MIT",
     "main": "dist/chartisan_echarts.js",

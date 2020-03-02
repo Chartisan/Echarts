@@ -140,6 +140,10 @@
                             axisPointer: { type: 'none' }
                         }
                     })
+                    .custom(({ data }) => {
+                        console.log(data)
+                        return data
+                    })
             })
             function update1() {
                 chart1.update({ background: true })
