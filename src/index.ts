@@ -91,12 +91,12 @@ export class Chartisan extends Base<CC> {
      */
     protected formatData(response: ServerData): CC {
         return {
-            xAxis: { data: response.chart.labels.map(value => ({ value })) },
+            xAxis: { data: response.chart.labels },
             yAxis: {},
             series: response.datasets.map(({ name, values }) => ({
                 name,
                 type: 'bar',
-                data: values.map(value => ({ value }))
+                data: values
             }))
         }
     }
