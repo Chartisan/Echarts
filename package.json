@@ -1,49 +1,49 @@
 {
-    "name": "@chartisan/echarts",
-    "description": "Chartisan's echarts frontend.",
-    "version": "2.2.0",
-    "author": "Èrik Campobadal Forés <soc@erik.cat>",
-    "license": "MIT",
-    "main": "dist/chartisan_echarts.js",
-    "module": "dist/chartisan_echarts.es.js",
-    "source": "src/index.ts",
-    "types": "dist/types/index.d.ts",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/chartisan/echarts.git"
-    },
-    "scripts": {
-        "dev": "ultrabundle",
-        "watch": "ultrabundle --watch",
-        "prod": "ultrabundle --optimize",
-        "docs": "typedoc src",
-        "release": "npm run prod && npm run docs"
-    },
-    "files": [
-        "dist",
-        "dist/types/index.d.ts"
-    ],
-    "keywords": [
-        "Echarts",
-        "Chart",
-        "Charts",
-        "Chartisan",
-        "Plot",
-        "Plots",
-        "Graphic",
-        "Graphics"
-    ],
-    "devDependencies": {
-        "@types/echarts": "^4.4.2",
-        "typedoc": "^0.16.5",
-        "typescript": "^3.7.3",
-        "ultrabundle": "^1.0.2"
-    },
-    "dependencies": {
-        "@chartisan/chartisan": "^2.0.1",
-        "resize-observer": "^1.0.0"
-    },
-    "peerDependencies": {
-        "echarts": "^4.6.0"
-    }
+  "name": "@chartisan/echarts",
+  "description": "Chartisan's echarts frontend.",
+  "version": "2.2.3",
+  "author": "Èrik Campobadal Forés <soc@erik.cat>",
+  "license": "MIT",
+  "main": "dist/chartisan_echarts.js",
+  "module": "dist/chartisan_echarts.es.js",
+  "source": "src/index.ts",
+  "types": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chartisan/echarts.git"
+  },
+  "scripts": {
+    "dev": "ultrabundle",
+    "watch": "ultrabundle --watch",
+    "prod": "ultrabundle --optimize",
+    "docs": "typedoc src",
+    "release": "npm run prod && npm run docs"
+  },
+  "files": [
+    "dist",
+    "dist/types/index.d.ts"
+  ],
+  "keywords": [
+    "Echarts",
+    "Chart",
+    "Charts",
+    "Chartisan",
+    "Plot",
+    "Plots",
+    "Graphic",
+    "Graphics"
+  ],
+  "devDependencies": {
+    "@types/echarts": "^4.4.2",
+    "typedoc": "^0.16.5",
+    "typescript": "^3.7.3",
+    "ultrabundle": "^1.0.2"
+  },
+  "dependencies": {
+    "@chartisan/chartisan": "^3.0.5",
+    "resize-observer": "^1.0.0"
+  },
+  "peerDependencies": {
+    "echarts": "^4.8.0"
+  }
 }
